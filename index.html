@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi San Valentín</title>
 
 <style>
@@ -183,6 +184,37 @@ button{
     margin-top:0;
 }
 
+@media (max-width:600px){
+
+h1{
+    font-size:26px;
+    margin-top:60px;
+}
+
+#inicio h1{
+    font-size:28px;
+}
+
+#inicio p{
+    font-size:18px;
+    padding:0 15px;
+}
+
+button{
+    font-size:16px;
+    padding:10px 18px;
+}
+
+#gifNailong{
+    width:160px;
+}
+
+#fotoFinal{
+    width:90%;
+}
+
+}
+
 
 
 
@@ -343,7 +375,7 @@ document.addEventListener("click", comenzar);
 document.addEventListener("keydown", comenzar);
 
 
-setInterval(crearCorazon,300);
+setInterval(crearCorazon,150);
 
 </script>
 
