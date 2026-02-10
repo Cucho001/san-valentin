@@ -284,8 +284,11 @@ botonNo.addEventListener("click", function(){
     botonSi.style.fontSize = tamañoSi + "px";
     botonNo.style.fontSize = tamañoNo + "px";
 
-    let x = Math.random() * window.innerWidth * 0.8;
-    let y = Math.random() * window.innerHeight * 0.8;
+    let limiteX = window.innerWidth - botonNo.offsetWidth;
+    let limiteY = window.innerHeight - botonNo.offsetHeight;
+
+    let x = Math.random() * limiteX;
+    let y = Math.random() * limiteY;
 
     botonNo.style.left = x + "px";
     botonNo.style.top = y + "px";
