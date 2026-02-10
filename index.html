@@ -11,7 +11,16 @@ body{
     overflow:hidden;
     font-family:"Lucida Handwriting", cursive;
     text-align:center;
-    background:#ffdde6;
+    background:linear-gradient(-45deg,
+        #ff9ab5,
+        #ffd6e0,
+        #ffc2d1,
+        #ff8fab
+    );
+
+    background-size:400% 400%;
+    animation:fondoAnimado 12s ease infinite;
+
 }
 
 h1{
@@ -43,15 +52,16 @@ button{
     background:#777;
     color:white;
     position:absolute;
-    margin-left:200px;
+    margin-left: 200px;
 }
 
 .corazon{
-    position:absolute;
+     position:fixed;
     color:red;
     font-size:20px;
     animation:flotar 6s linear infinite;
-    z-index:0;
+    z-index:100000;
+    pointer-events:none;
 }
 
 @keyframes flotar{
@@ -61,7 +71,18 @@ button{
     }
     to{
         transform:translateY(-10vh);
-        opacity:0,9;
+        opacity:0.9;
+    }
+}
+@keyframes fondoAnimado{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
     }
 }
 
@@ -100,14 +121,81 @@ button{
    margin-left:auto;
    margin-right:auto;
 }
+#inicio{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(-45deg,
+        #ff9ab5,
+        #ffd6e0,
+        #ffc2d1,
+        #ff8fab
+    );
+
+    background-size:400% 400%;
+    animation:fondoAnimado 12s ease infinite;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    text-align:center;
+}
+
+#inicio h1{
+    margin-top:0;
+    font-size:40px;
+}
+
+#inicio p{
+    font-size:22px;
+}
+
+#final{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    background:linear-gradient(-45deg,
+        #ff9ab5,
+        #ffd6e0,
+        #ffc2d1,
+        #ff8fab
+    );
+
+    background-size:400% 400%;
+    animation:fondoAnimado 12s ease infinite;
+
+    z-index:999;
+}
+#final h1{
+    margin-top:0;
+}
+
+
 
 
 </style>
 </head>
 
 <body>
+<div id="inicio">
+    <h1>💌 Tengo algo para vos...</h1>
+    <p>Presioná cualquier tecla o tocá la pantalla para comenzar ❤️</p>
+</div>
 
-<div id="contenido">
+<div id="contenido" style="display:none;">
 
 <h1>❤️ ¿Querés ser mi San Valentín? ❤️</h1>
 
@@ -123,14 +211,20 @@ button{
 </div>
 
 <div id="final" style="display:none;">
+
 <h1 style="margin-top:150px;">
 💘 Sabía que ibas a decir que sí 😌<br>
 Ahora oficialmente sos mi San Valentín 💘
-<p>💘 Te amo mucho 💘</p>
-<img id="fotoFinal" src="foto9.jpg" style="display:none; margin-top:20px; border-radius:15px;">
-
 </h1>
+
+<p style="font-size:22px;">💘 Te amo mucho 💘</p>
+
+<img id="fotoFinal"
+src="foto9.jpg"
+style="display:none; margin-top:20px; border-radius:15px;">
+
 </div>
+
 
 <audio id="musica">
 <source src="./careless.mp3" type="audio/mpeg">
@@ -139,6 +233,9 @@ Ahora oficialmente sos mi San Valentín 💘
 
 
 <script>
+
+document.getElementById("final").style.display = "none";
+
 
 let botonSi = document.getElementById("si");
 let botonNo = document.getElementById("no");
@@ -163,14 +260,18 @@ botonNo.addEventListener("click", function(){
 });
 
 botonSi.addEventListener("click", function(){
-
+    if(navigator.vibrate){
+        navigator.vibrate(200);
+    }
     musica.currentTime = 0;
     musica.play().catch(e => console.log("Error audio:", e));
 
    explosionDesdeBoton(botonSi);
-document.getElementById("fotoFinal").style.display = "block";
+
+    document.getElementById("fotoFinal").style.display = "block";
     document.getElementById("contenido").style.display="none";
     document.getElementById("final").style.display="block";
+
 });
 
 
@@ -231,6 +332,15 @@ function explosionDesdeBoton(boton){
         setTimeout(()=>corazon.remove(),1000);
     }
 }
+function comenzar(){
+
+    document.getElementById("inicio").style.display="none";
+    document.getElementById("contenido").style.display="block";
+
+}
+
+document.addEventListener("click", comenzar);
+document.addEventListener("keydown", comenzar);
 
 
 setInterval(crearCorazon,300);
