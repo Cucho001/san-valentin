@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi San Valentín</title>
 
 <style>
@@ -21,11 +20,6 @@ body{
 
     background-size:400% 400%;
     animation:fondoAnimado 12s ease infinite;
-    touch-action: manipulation;
-    html, body{
-    max-width:100%;
-    overflow-x:hidden;
-}
 
 }
 
@@ -189,37 +183,6 @@ button{
     margin-top:0;
 }
 
-@media (max-width:600px){
-
-h1{
-    font-size:26px;
-    margin-top:60px;
-}
-
-#inicio h1{
-    font-size:28px;
-}
-
-#inicio p{
-    font-size:18px;
-    padding:0 15px;
-}
-
-button{
-    font-size:16px;
-    padding:10px 18px;
-}
-
-#gifNailong{
-    width:160px;
-}
-
-#fotoFinal{
-    width:90%;
-}
-
-}
-
 
 
 
@@ -227,7 +190,6 @@ button{
 </head>
 
 <body>
-    
 <div id="inicio">
     <h1>💌 Tengo algo para vos...</h1>
     <p>Presioná cualquier tecla o tocá la pantalla para comenzar ❤️</p>
@@ -290,11 +252,8 @@ botonNo.addEventListener("click", function(){
     botonSi.style.fontSize = tamañoSi + "px";
     botonNo.style.fontSize = tamañoNo + "px";
 
-    let limiteX = window.innerWidth - botonNo.offsetWidth;
-    let limiteY = window.innerHeight - botonNo.offsetHeight;
-
-    let x = Math.random() * limiteX;
-    let y = Math.random() * limiteY;
+    let x = Math.random() * window.innerWidth * 0.8;
+    let y = Math.random() * window.innerHeight * 0.8;
 
     botonNo.style.left = x + "px";
     botonNo.style.top = y + "px";
