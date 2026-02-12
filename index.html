@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Mi San Valentín</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
 
 <style>
 
 body{
     margin:0;
     overflow:hidden;
-    font-family:"Lucida Handwriting", cursive;
+    font-family:'Great Vibes', cursive;
     text-align:center;
     background:linear-gradient(-45deg,
         #ff9ab5,
@@ -60,7 +64,7 @@ button{
     color:red;
     font-size:20px;
     animation:flotar 6s linear infinite;
-    z-index:100000;
+    z-index:10000;
     pointer-events:none;
 }
 
@@ -151,6 +155,8 @@ button{
 
 #inicio p{
     font-size:22px;
+    font-family: Arial, sans-serif;
+    font-style: normal;
 }
 
 #final{
@@ -183,8 +189,227 @@ button{
     margin-top:0;
 }
 
+#carta{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    background:linear-gradient(-45deg,
+        #ff9ab5,
+        #ffd6e0,
+        #ffc2d1,
+        #ff8fab
+    );
+
+    background-size:400% 400%;
+    animation:fondoAnimado 12s ease infinite;
+
+    z-index:99999;
+}
+
+#sobreContainer{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:99999;
+
+     background:linear-gradient(-45deg,
+        #ff9ab5,
+        #ffd6e0,
+        #ffc2d1,
+        #ff8fab
+    );
+    background-size:400% 400%;
+    animation:fondoAnimado 12s ease infinite;
+}
 
 
+#sobre p{
+    font-size:20px;
+    margin-top:10px;
+}
+
+#sobre:not(.abierto):hover{
+    transform:scale(1.1);
+}
+
+
+#papel{
+    margin-top:20px;
+    max-width:600px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+    animation:aparecer 0.6s ease;
+}
+
+#sobre{
+    font-size:80px;
+    cursor:pointer;
+    transition:0.6s;
+}
+
+#sobre{
+    position:relative;
+    width:260px;
+    height:180px;
+    cursor:pointer;
+}
+
+
+.cuerpo{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff8fab;
+    border-radius:10px;
+}
+
+.tapa{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#ff4d6d;
+    clip-path:polygon(0 0,100% 0,50% 60%);
+    transform-origin:top;
+    transition:0.6s;
+}
+
+#sobre.abierto .tapa{
+    transform:rotateX(180deg);
+}
+
+.cartaVisual{
+    position:absolute;
+    top:30px;
+    left:50%;
+    transform:translateX(-50%);
+
+    background:#f4e4c1;
+    padding:25px;
+
+    border-radius:6px;
+    width:320px;
+    max-width:90vw;
+    text-align:center;
+
+    font-family:"Georgia", serif;
+    color:#3b2f1c;
+
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+
+    border:2px solid #d2b48c;
+
+    transition:0.6s;
+    opacity:0;
+    position:absolute;
+
+    transform:translateX(-50%) scaleY(0);
+transform-origin:top;
+overflow:hidden;
+pointer-events: auto;
+    z-index: 999;
+
+}
+
+/* efecto papiro arriba */
+.cartaVisual::before{
+    content:"";
+    position:absolute;
+    top:-8px;
+    left:0;
+    width:100%;
+    height:16px;
+    background:radial-gradient(circle, rgba(0,0,0,0.15) 20%, transparent 70%);
+}
+
+/* efecto papiro abajo */
+.cartaVisual::after{
+    content:"";
+    position:absolute;
+    bottom:-8px;
+    left:0;
+    width:100%;
+    height:16px;
+    background:radial-gradient(circle, rgba(0,0,0,0.15) 20%, transparent 70%);
+}
+
+
+.cartaVisual h2{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.cartaVisual p{
+    font-size:20px;
+    line-height:1.6;
+}
+.cartaVisual{
+    font-family:'Dancing Script', cursive;
+}
+
+.cartaVisual h2{
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+.cartaMostrar{
+    transform:translateX(-50%) scaleY(1);
+    opacity:1;
+}
+
+/* ======== EFECTO PERGAMINO REAL ======== */
+
+.cartaVisual{
+    background:linear-gradient(#f5e6c8,#e8d3a5);
+    border:2px solid #c9a86a;
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,0.15),
+        0 10px 25px rgba(0,0,0,0.25);
+    border-radius:6px;
+}
+
+/* rollo superior */
+.rolloSuperior{
+    position:absolute;
+    top:-12px;
+    left:0;
+    width:100%;
+    height:20px;
+    background:linear-gradient(#d8bf8a,#c9a86a);
+    border-radius:50%;
+    box-shadow:0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* rollo inferior */
+.rolloInferior{
+    position:absolute;
+    bottom:-12px;
+    left:0;
+    width:100%;
+    height:20px;
+    background:linear-gradient(#d8bf8a,#c9a86a);
+    border-radius:50%;
+    box-shadow:0 -4px 6px rgba(0,0,0,0.2);
+}
 
 </style>
 </head>
@@ -215,14 +440,42 @@ button{
 Ahora oficialmente sos mi San Valentín 💘
 </h1>
 
-<p style="font-size:22px;">💘 Te amo mucho 💘</p>
+<p style="font-size:30px;">💘 Te amo mucho 💘</p>
 
 <img id="fotoFinal"
 src="foto9.jpg"
 style="display:none; margin-top:20px; border-radius:15px;">
 
+<br><br>
+<button id="abrirCarta">💌 Abrir carta</button>
+
 </div>
 
+<div id="sobreContainer" style="display:none;">
+
+
+    <div id="sobre" onclick="abrirSobre()">
+
+    <div class="cuerpo"></div>   
+    <div class="tapa"></div>
+    
+   <div class="cartaVisual" onclick="event.stopPropagation()">
+
+
+<div class="rolloSuperior"></div>
+
+<h2>💌 Para Magdalena ❤️</h2>
+
+<p id="textoCarta"></p>
+
+
+<div class="rolloInferior"></div>
+
+</div>
+    <p>Tocá la carta para abrirla</p>
+</div>
+
+</div>
 
 <audio id="musica">
 <source src="./careless.mp3" type="audio/mpeg">
@@ -238,6 +491,7 @@ document.getElementById("final").style.display = "none";
 let botonSi = document.getElementById("si");
 let botonNo = document.getElementById("no");
 let musica = document.getElementById("musica");
+let botonCarta = document.getElementById("abrirCarta");
 
 let tamañoSi = 20;
 let tamañoNo = 20;
@@ -337,11 +591,71 @@ function comenzar(){
 
 }
 
-document.addEventListener("click", comenzar);
+document.getElementById("inicio").addEventListener("click", comenzar);
 document.addEventListener("keydown", comenzar);
 
 
 setInterval(crearCorazon,150);
+
+botonCarta.addEventListener("click", function(){
+
+    document.getElementById("final").style.display="none";
+    document.getElementById("sobreContainer").style.display="flex";
+
+});
+
+function abrirSobre(){
+
+    let sobre = document.getElementById("sobre");
+
+    if(sobre.classList.contains("abierto")) return;
+
+    let carta = document.querySelector(".cartaVisual");
+    let textoElemento = document.getElementById("textoCarta");
+
+    sobre.classList.add("abierto");
+
+    setTimeout(()=>{
+
+        carta.classList.add("cartaMostrar");
+
+        let mensaje = `Magdalena ❤️
+
+Desde que llegaste a mi vida todo se volvió más lindo.
+Cada momento con vos es especial y cada sonrisa tuya
+me hace sentir la persona más feliz del mundo.
+
+Gracias por ser vos… por tu forma de ser,
+por tu cariño y por todo lo que compartimos.
+
+Te amo muchísimo pulga❤️❤️❤️`;
+
+        escribirCarta(mensaje, textoElemento, 30);
+
+    },1000);
+}
+
+
+function escribirCarta(texto, elemento, velocidad=35){
+
+    elemento.innerHTML = "";
+    let i = 0;
+
+    function escribir(){
+
+        if(i < texto.length){
+            elemento.innerHTML += texto.charAt(i);
+            i++;
+            setTimeout(escribir, velocidad);
+        }
+    }
+
+    escribir();
+}
+
+
+
+
 
 </script>
 
